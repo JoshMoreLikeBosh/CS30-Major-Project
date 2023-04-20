@@ -2,7 +2,7 @@
 
 ## Project Description
 
-I will be creating the best, most skilled piece of coding you have ever seen
+fps shooting range, 
 
 ## Need to have List
 
@@ -15,3 +15,7 @@ I will be creating the best, most skilled piece of coding you have ever seen
 - thing 1
 - thing 2
 - thing 3
+
+## Project Stuff
+
+- [1-major-project](1-major-project)
