@@ -2,19 +2,15 @@
 
 ## Project Description
 
-fps shooting range, laser guns and stuff 
+2d platformer shooter
 
 ## Need to have List
 
-- PHYSICS
-- COLLISION
-- Range
-- targets
-- at least 1 weapon
-- movement (includes jumping)
-- camera
-- crosshair
-- sound effects and bg music
+- player model
+- bullets
+- platforms
+- physics
+- movement
 
 ## Nice to have List
 
