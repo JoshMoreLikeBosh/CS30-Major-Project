@@ -9,6 +9,14 @@ let accel;
 let velocity;
 let mass;
 let groundTop;
+let images;
+let img;
+let movement = 0;
+
+function preload() {
+  let images = [];
+
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -24,24 +32,13 @@ function draw() {
   background(50);
   fill(255,0,0);
 
-  // createGround();
+  createGround();
   createPlayer();
+  playerControls();
 
 }
 
-function createPlayer() {
-  push();
-  rectMode(CENTER);
-  velocity += accel;
-  yVel += velocity;
-  rect(mouseX,yVel, mass,mass);
 
-  if (yVel > height - mass/2) {
-    velocity *= -0.3;
-    yVel = height - mass/2;
-  }
-  pop();
-}
 
 function createGround() {
   push();
@@ -50,11 +47,43 @@ function createGround() {
   pop();
 }
 
-function gravity() {
-
-}
 
 function mousePressed() {
+  push();
   yVel = 0;
   velocity = 0;
+  mouseX===mouseX;
+  pop();
+}
+
+function playerControls() {
+  if (keyIsDown(68)) {
+    movement += 15;
+  }
+  if (keyIsDown(65)) {
+    movement -= 15;
+  }
+  if (keyIsDown(32)) {
+    yVel = 300;
+    if (keyIsDown(65)) {
+      movement -= 30;
+    }
+    if (keyIsDown(68)) {
+      movement += 30;
+    }
+  }
+}
+
+function createPlayer() {
+  push();
+  rectMode(CENTER);
+  velocity += accel;
+  yVel += velocity;
+  rect(movement,yVel, mass,mass);
+
+  if (yVel > height - mass/2) {
+    velocity *= -0.3;
+    yVel = height - mass/2;
+  }
+  pop();
 }
