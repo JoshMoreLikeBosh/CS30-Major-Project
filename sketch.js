@@ -5,17 +5,19 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let player, floor, floor2, floor3;
+let player, floor, floor2, floor3, floor4;
 let floorHeight = 0;
 
 function setup() {
-	new Canvas(windowWidth, windowHeight);
-	world.gravity.y = 15;
-	player = new Sprite(50, 0);
-	floor = new Sprite(25, floorHeight+600, windowWidth, 40, "static");
-  floor2 = new Sprite(10, floorHeight+250, 450, 40, "static");
-  floor3 = new Sprite(50, floorHeight+400, 225, 40, "static");
-}
+  new Canvas(windowWidth, windowHeight);
+  world.gravity.y = 15;
+  createPlayer();
+  //(10, height, width, verticle width, static keeps it in air)
+  floor = new Sprite(0, floorHeight+350, 200, 25, "dynamicd");
+  floor2 = new Sprite(0, floorHeight+400, 400, 50, "dynamica");
+  floor3 = new Sprite(0, floorHeight+450, 800, 50, "static");
+  floor4 = new Sprite(0, floorHeight+500, 800, 50, "static");
+} 
 
 function draw() {
   background("white");
@@ -33,8 +35,8 @@ function playerLeftAndRight() {
     //player.vel.y = 1;
     player.vel.x = -3;
   }
-  if (kb.pressing("w")) {
-    player.vel.y = 30;
+  if (kb.released("w")) {
+    player.vel.y += 40;
     
   }
   console.log()
@@ -42,3 +44,20 @@ function playerLeftAndRight() {
 // }
 }
 
+function createPlayer() {
+  player = new Sprite(50, 0);
+  //aplayer.diameter = 50;
+  player.color = "lavender";
+  player.stroke = "purple";
+}
+
+function createSurface () {
+  
+}
+
+function playerDeath() {
+  if (player.y > windowHeight) {
+    player.x = windowWidth/2;
+    player.y = windowHeight/8;
+  }
+}
