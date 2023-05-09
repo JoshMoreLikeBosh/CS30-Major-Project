@@ -5,12 +5,12 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let player, floor, floor2, floor3, floor4, floor5, boxy;
+let player, floor, floor2, floor3, floor4, floor5, floor6, boxy;
 let floorHeight = 0;
 let floorWidth = 0;
 let floorX = 0;
 let floorY = 0;
-let jumpValue = -8;
+let jumpValue = 8;
 let boxyArray = [];
 
 function setup() {
@@ -46,9 +46,15 @@ function playerLeftAndRight() {
   }
 
   // jump
-  if (kb.presses("w")) {
-    player.vel.y = jumpValue;
+  
+  if (player.vel.y <= 0) {
+    if (kb.presses("w")) {
+      player.vel.y = -jumpValue;
+    }
+    
+
   }
+  console.log(player.vel.y);
   // create box under
   
   //Sprite(100, 25, 150, 25, "s");
@@ -82,6 +88,7 @@ function createSurface () {
   floor4 = new Sprite(floorX+640, floorY+725, floorWidth+80, floorHeight+500, "s");
   floor5 = new Sprite(floorX+805, floorY+435, floorWidth+300, floorHeight+50, "s");
   floor5.rotation = -25;
+  floor6 = new Sprite(floorX+805, floorY+650, floorWidth+300, floorHeight+50, "s");
   //boxy = new Sprite(0, 25, 25)
 }
 
