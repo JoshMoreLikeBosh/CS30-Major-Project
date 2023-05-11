@@ -7,7 +7,7 @@
 
 
 // i apologize for this long line of code, this is just so i can make a new sprite for each floor
-let player, floor, floor2, floor3, floor4, floor5, floor6, floor7, floor8, floor9, floor10, floor11, floor12, floor13, floor14, floor15, floor16, floor17, floor18, floor19, floor20, boxy;
+let player, floor0, floor2, floor3, floor4, floor5, floor6, floor7, floor8, floor9, floor10, floor11, floor12, floor13, floor14, floor15, floor16, floor17, floor18, floor19, floor20, boxy;
 let floorGroup;
 let floorHeight = 0;
 let floorWidth = 0;
@@ -15,8 +15,16 @@ let floorX = 0;
 let floorY = 0;
 let jumpValue = 8;
 let boxyArray = [];
+let mySound, mySound2;
+
+function preload() {
+  soundFormats("mp3", "ogg");
+  mySound = loadSound("bgSong.mp3");
+  mySound2 = loadSound("bgSong2");
+}
 
 function setup() {
+  mySound2.play();
   new Canvas(windowWidth, windowHeight);
   world.gravity.y = 15;
   createPlayer();
@@ -87,7 +95,7 @@ function createPlayer() {
 
 function createSurface () {
 
-  floor = new Sprite(floorX+0, floorY+350, floorWidth+225, floorHeight+25, "d");
+  floor0 = new Sprite(floorX+0, floorY+350, floorWidth+225, floorHeight+25, "d");
   floor2 = new Sprite(floorX+0, floorY+500, floorWidth+800, floorHeight+50, "s");
   floor3 = new Sprite(floorX+440, floorY+725, floorWidth+80, floorHeight+500, "s");
   floor4 = new Sprite(floorX+640, floorY+725, floorWidth+80, floorHeight+500, "s");
@@ -115,12 +123,13 @@ function groupTest() {
   floorGroup.collider = "s";
   //floorGroup.y = 750;
   //create multiples of floor
-  while (floorGroup.length < 5) {
+  while (floorGroup.length < 10) {
     let floorThing = new floorGroup.Sprite();
     floorThing.x = floorGroup.length * floorGroup.width;
     floorThing.y = floorGroup.length * floorGroup.height + 200;
   
   }
-  floorGroup[0].rotation = -45;
-  floorGroup[3].width = 100;
+  floorGroup[0].x = 0;
+  floorGroup[0].y = 350;
+  floorGroup[5].width = 10;
 }
