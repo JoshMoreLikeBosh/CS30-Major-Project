@@ -16,15 +16,19 @@ let floorY = 0;
 let jumpValue = 8;
 let boxyArray = [];
 let mySound, mySound2;
+let myImage, myImage2, myImage3;
 
 function preload() {
   soundFormats("mp3", "ogg");
   mySound = loadSound("bgSong.mp3");
-  mySound2 = loadSound("bgSong2");
+  mySound2 = loadSound("bgSong2.mp3");
+  myImage = loadImage("bgImage.jpg");
+  myImage2 = loadImage("bgImage2.jpg");
+  myImage3 = loadImage("besnnt.PNG");
 }
 
 function setup() {
-  mySound2.play();
+  // mySound2.play();
   new Canvas(windowWidth, windowHeight);
   world.gravity.y = 15;
   createPlayer();
@@ -38,39 +42,39 @@ function draw() {
   
   playerLeftAndRight();
 	camera.x = player.x;
+  //camera.y = player.y;
 }
 
 function playerLeftAndRight() {
   // move right
-  if (kb.pressing("d")) {
+  if (kb.pressing("d") || kb.pressing("right")) {
     //player.vel.y = 1;
     player.vel.x = 3;
   }
   // move left
-  if (kb.pressing("a")) {
+  if (kb.pressing("a") || kb.pressing("left")) {
     //player.vel.y = 1;
     player.vel.x = -3;
   }
   // ground pound
-  if (kb.presses("s")) {
-    player.vel.y = -jumpValue*2;
+  if (kb.presses("s") || kb.presses("down")) {
+    player.vel.y = jumpValue*2;
     player.vel.x = 0;
   }
-
   // jump
-  
   if (player.vel.y <= 0) {
-    if (kb.presses("w")) {
+    if (kb.presses("w") || kb.presses("up")) {
       player.vel.y = -jumpValue;
     }
-    
+
+
 
   }
   //console.log(player.vel.y);
   // create box under
   
   //Sprite(100, 25, 150, 25, "s");
-  if (kb.presses("e")) {
+  if (kb.presses("e") || kb.presses("space")) {
     boxy = new Sprite(100, 25, 150, 25, "s");
     boxy.x = player.x + 0;
     boxy.y = player.y + 50;
@@ -78,7 +82,7 @@ function playerLeftAndRight() {
     boxy.stroke = "MediumVioletRed";
     boxyArray.push(boxy);
   }
-  if (kb.presses("q")) {
+  if (kb.presses("q") || kb.presses("shift")) {
     let toDestroy = boxyArray.pop();
     toDestroy.remove();
   }
@@ -95,13 +99,13 @@ function createPlayer() {
 
 function createSurface () {
 
-  floor0 = new Sprite(floorX+0, floorY+350, floorWidth+225, floorHeight+25, "d");
-  floor2 = new Sprite(floorX+0, floorY+500, floorWidth+800, floorHeight+50, "s");
-  floor3 = new Sprite(floorX+440, floorY+725, floorWidth+80, floorHeight+500, "s");
-  floor4 = new Sprite(floorX+640, floorY+725, floorWidth+80, floorHeight+500, "s");
-  floor5 = new Sprite(floorX+805, floorY+435, floorWidth+300, floorHeight+50, "s");
-  floor5.rotation = -25;
-  floor6 = new Sprite(floorX+1078, floorY+374.5, floorWidth+300, floorHeight+50, "s");
+  // floor0 = new Sprite(floorX+0, floorY+350, floorWidth+225, floorHeight+25, "d");
+  // floor2 = new Sprite(floorX+0, floorY+500, floorWidth+800, floorHeight+50, "s");
+  // floor3 = new Sprite(floorX+440, floorY+725, floorWidth+80, floorHeight+500, "s");
+  // floor4 = new Sprite(floorX+640, floorY+725, floorWidth+80, floorHeight+500, "s");
+  // floor5 = new Sprite(floorX+805, floorY+435, floorWidth+300, floorHeight+50, "s");
+  // floor5.rotation = -25;
+  // floor6 = new Sprite(floorX+1078, floorY+374.5, floorWidth+300, floorHeight+50, "s");
   //boxy = new Sprite(0, 25, 25)
 }
 
@@ -130,6 +134,9 @@ function groupTest() {
   
   }
   floorGroup[0].x = 0;
-  floorGroup[0].y = 350;
+  floorGroup[0].y = 750;
+  floorGroup[0].width = 600;
+  floorGroup[0].height = 600;
+
   floorGroup[5].width = 10;
 }
