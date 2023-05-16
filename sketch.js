@@ -15,20 +15,22 @@ let floorX = 0;
 let floorY = 0;
 let jumpValue = 8;
 let boxyArray = [];
-let mySound, mySound2;
+let mySound, mySound2, mySound3;
 let myImage, myImage2, myImage3;
 
 function preload() {
   soundFormats("mp3", "ogg");
   mySound = loadSound("bgSong.mp3");
   mySound2 = loadSound("bgSong2.mp3");
+  mySound3 = loadSound("meow.mp3");
+
   myImage = loadImage("bgImage.jpg");
   myImage2 = loadImage("bgImage2.jpg");
   myImage3 = loadImage("besnnt.PNG");
 }
 
 function setup() {
-  // mySound2.play();
+  mySound3.play();
   new Canvas(windowWidth, windowHeight);
   world.gravity.y = 15;
   createPlayer();
@@ -42,7 +44,7 @@ function draw() {
   
   playerLeftAndRight();
 	camera.x = player.x;
-  //camera.y = player.y;
+  camera.y = player.y;
 }
 
 function playerLeftAndRight() {
@@ -65,7 +67,9 @@ function playerLeftAndRight() {
   if (player.vel.y <= 0) {
     if (kb.presses("w") || kb.presses("up")) {
       player.vel.y = -jumpValue;
+
     }
+    console.log(player.vel.y);
 
 
 
@@ -133,10 +137,55 @@ function groupTest() {
     floorThing.y = floorGroup.length * floorGroup.height + 200;
   
   }
+  // template for each floor
+
+  // floorGroup[].x = 0;
+  // floorGroup[].y = 0;
+  // floorGroup[].width = 0;
+  // floorGroup[].height = 0;
+
+
+  // floor 1
   floorGroup[0].x = 0;
   floorGroup[0].y = 750;
   floorGroup[0].width = 600;
   floorGroup[0].height = 600;
 
-  floorGroup[5].width = 10;
+  // floor 2
+  floorGroup[1].x = 500;
+  floorGroup[1].y = 750;
+  floorGroup[1].width = 150;
+  floorGroup[1].height = 600;
+
+  // floor 3
+  floorGroup[2].x = 700;
+  floorGroup[2].y = 750;
+  floorGroup[2].width = 200;
+  floorGroup[2].height = 600;
+  floorGroup[2].rotation = -45;
+
+  // floor 4
+  floorGroup[3].x = 0;
+  floorGroup[3].y = 750;
+  floorGroup[3].width = 600;
+  floorGroup[3].height = 600;
+
+  // floor 5
+  floorGroup[4].x = 0;
+  floorGroup[4].y = 750;
+  floorGroup[4].width = 600;
+  floorGroup[4].height = 600;
+
+  // floor 6
+  floorGroup[5].x = 0;
+  floorGroup[5].y = 750;
+  floorGroup[5].width = 600;
+  floorGroup[5].height = 600;
+
+  // floor 7
+  floorGroup[6].x = 0;
+  floorGroup[6].y = 0;
+  floorGroup[6].width = 0;
+  floorGroup[6].height = 0;
+  
 }
