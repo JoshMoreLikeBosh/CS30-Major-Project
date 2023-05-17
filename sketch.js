@@ -96,7 +96,7 @@ function playerLeftAndRight() {
 
 function createPlayer() {
   player = new Sprite(50, 0);
-  //aplayer.diameter = 50;
+  //player.diameter = 50;
   player.color = "lavender";
   player.stroke = "purple";
 }
@@ -131,7 +131,7 @@ function groupTest() {
   floorGroup.collider = "s";
   //floorGroup.y = 750;
   //create multiples of floor
-  while (floorGroup.length < 10) {
+  while (floorGroup.length < 7) {
     let floorThing = new floorGroup.Sprite();
     floorThing.x = floorGroup.length * floorGroup.width;
     floorThing.y = floorGroup.length * floorGroup.height + 200;
@@ -158,11 +158,11 @@ function groupTest() {
   floorGroup[1].height = 600;
 
   // floor 3
-  floorGroup[2].x = 700;
-  floorGroup[2].y = 750;
+  floorGroup[2].x = 647;
+  floorGroup[2].y = 428;
   floorGroup[2].width = 200;
-  floorGroup[2].height = 600;
-  floorGroup[2].rotation = -45;
+  floorGroup[2].height = 60;
+  floorGroup[2].rotation = 30;
 
   // floor 4
   floorGroup[3].x = 0;
