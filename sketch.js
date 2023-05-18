@@ -131,7 +131,7 @@ function groupTest() {
   floorGroup.collider = "s";
   //floorGroup.y = 750;
   //create multiples of floor
-  while (floorGroup.length < 7) {
+  while (floorGroup.length < 8) {
     let floorThing = new floorGroup.Sprite();
     floorThing.x = floorGroup.length * floorGroup.width;
     floorThing.y = floorGroup.length * floorGroup.height + 200;
@@ -147,9 +147,18 @@ function groupTest() {
 
   // floor 1
   floorGroup[0].x = 0;
-  floorGroup[0].y = 750;
-  floorGroup[0].width = 600;
-  floorGroup[0].height = 600;
+  floorGroup[0].y = 200;
+  floorGroup[0].width = 0;
+  floorGroup[0].height = 0;
+  floorGroup[0].text = ("Controls W = Jump | A = Left | S = GroundPound | D = Right");
+  floorGroup[0].textSize = 50;
+
+  // floor 8
+  floorGroup[7].x = 0;
+  floorGroup[7].y = 0;
+  floorGroup[7].width = 0;
+  floorGroup[7].height = 0;
+  floorGroup[7].
 
   // floor 2
   floorGroup[1].x = 500;
@@ -162,12 +171,12 @@ function groupTest() {
   floorGroup[2].y = 428;
   floorGroup[2].width = 200;
   floorGroup[2].height = 60;
-  floorGroup[2].rotation = 30;
+  floorGroup[2].rotation = -30;
 
   // floor 4
-  floorGroup[3].x = 0;
-  floorGroup[3].y = 750;
-  floorGroup[3].width = 600;
+  floorGroup[3].x = 1068;
+  floorGroup[3].y = 651;
+  floorGroup[3].width = 700;
   floorGroup[3].height = 600;
 
   // floor 5
