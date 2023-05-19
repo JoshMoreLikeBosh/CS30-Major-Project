@@ -1,13 +1,10 @@
-// Project Title
-// Your Name
-// Date
+// P5.Play Platformer
+// Josh Wright
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// - explored with P5.Play and learned how to use it to make a platformer
 
-
-// i apologize for this long line of code, this is just so i can make a new sprite for each floor
-let player, floor0, floor2, floor3, floor4, floor5, floor6, floor7, floor8, floor9, floor10, floor11, floor12, floor13, floor14, floor15, floor16, floor17, floor18, floor19, floor20, boxy;
+let player, boxy;
 let floorGroup;
 let floorHeight = 0;
 let floorWidth = 0;
@@ -19,11 +16,13 @@ let mySound, mySound2, mySound3;
 let myImage, myImage2, myImage3;
 
 function preload() {
+  // Loads Music Files
   soundFormats("mp3", "ogg");
   mySound = loadSound("bgSong.mp3");
   mySound2 = loadSound("bgSong2.mp3");
   mySound3 = loadSound("meow.mp3");
 
+  // Loads Image Files
   myImage = loadImage("bgImage.jpg");
   myImage2 = loadImage("bgImage2.jpg");
   myImage3 = loadImage("besnnt.PNG");
@@ -33,51 +32,45 @@ function setup() {
   mySound3.play();
   new Canvas(windowWidth, windowHeight);
   world.gravity.y = 15;
-  createPlayer();
-  createSurface();
   groupTest();
+  createPlayer();
 } 
 
 function draw() {
   background("white");
-  //clear();
-  
-  playerLeftAndRight();
-	camera.x = player.x;
+  playerMovement();
+  camera.x = player.x;
   camera.y = player.y;
 }
 
-function playerLeftAndRight() {
+// Players Movement
+// ~~~~~~~~~~~~~~~~
+
+function playerMovement() {
   // move right
   if (kb.pressing("d") || kb.pressing("right")) {
-    //player.vel.y = 1;
     player.vel.x = 3;
   }
+
   // move left
   if (kb.pressing("a") || kb.pressing("left")) {
-    //player.vel.y = 1;
     player.vel.x = -3;
   }
+
   // ground pound
   if (kb.presses("s") || kb.presses("down")) {
     player.vel.y = jumpValue*2;
     player.vel.x = 0;
   }
+
   // jump
-  if (player.vel.y <= 0) {
-    if (kb.presses("w") || kb.presses("up")) {
-      player.vel.y = -jumpValue;
-
-    }
-    console.log(player.vel.y);
-
-
-
+  if (kb.presses("w") || kb.presses("up")) {
+    player.vel.y = -jumpValue;
   }
-  //console.log(player.vel.y);
-  // create box under
+
+  // Creates a platform under the player
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
-  //Sprite(100, 25, 150, 25, "s");
   if (kb.presses("e") || kb.presses("space")) {
     boxy = new Sprite(100, 25, 150, 25, "s");
     boxy.x = player.x + 0;
@@ -92,7 +85,8 @@ function playerLeftAndRight() {
   }
 }
 
-// push boxy into array and press delete key to remove from array
+// Creates the Player
+// ~~~~~~~~~~~~~~~~~~~~
 
 function createPlayer() {
   player = new Sprite(50, 0);
@@ -101,17 +95,8 @@ function createPlayer() {
   player.stroke = "purple";
 }
 
-function createSurface () {
-
-  // floor0 = new Sprite(floorX+0, floorY+350, floorWidth+225, floorHeight+25, "d");
-  // floor2 = new Sprite(floorX+0, floorY+500, floorWidth+800, floorHeight+50, "s");
-  // floor3 = new Sprite(floorX+440, floorY+725, floorWidth+80, floorHeight+500, "s");
-  // floor4 = new Sprite(floorX+640, floorY+725, floorWidth+80, floorHeight+500, "s");
-  // floor5 = new Sprite(floorX+805, floorY+435, floorWidth+300, floorHeight+50, "s");
-  // floor5.rotation = -25;
-  // floor6 = new Sprite(floorX+1078, floorY+374.5, floorWidth+300, floorHeight+50, "s");
-  //boxy = new Sprite(0, 25, 25)
-}
+// WIP player death
+// ~~~~~~~~~~~~~~~~
 
 function playerDeath() {
   if (player.y > windowHeight) {
@@ -121,7 +106,7 @@ function playerDeath() {
 }
 
 function groupTest() {
-  //creates
+  //Initalized Values
   floorGroup = new Group();
   floorGroup.width = 50;
   floorGroup.height = 20;
@@ -129,14 +114,11 @@ function groupTest() {
   floorGroup.y = 0;
   console.log(floorGroup.y);
   floorGroup.collider = "s";
-  //floorGroup.y = 750;
   //create multiples of floor
-  while (floorGroup.length < 8) {
+  while (floorGroup.length < 11) {
     let floorThing = new floorGroup.Sprite();
-    floorThing.x = floorGroup.length * floorGroup.width;
-    floorThing.y = floorGroup.length * floorGroup.height + 200;
-  
   }
+
   // template for each floor
 
   // floorGroup[].x = 0;
@@ -144,21 +126,58 @@ function groupTest() {
   // floorGroup[].width = 0;
   // floorGroup[].height = 0;
 
+  // Creation of Each Floor
+  // ~~~~~~~~~~~~~~~~~~~~~~
+
+  // CONTROL TUTORIAL TEXT BOXES
 
   // floor 1
   floorGroup[0].x = 0;
-  floorGroup[0].y = 200;
+  floorGroup[0].y = 150;
   floorGroup[0].width = 0;
   floorGroup[0].height = 0;
-  floorGroup[0].text = ("Controls W = Jump | A = Left | S = GroundPound | D = Right");
+  floorGroup[0].text = "Controls";
   floorGroup[0].textSize = 50;
+  floorGroup[0].collider = "none";
 
   // floor 8
   floorGroup[7].x = 0;
-  floorGroup[7].y = 0;
+  floorGroup[7].y = 200;
   floorGroup[7].width = 0;
   floorGroup[7].height = 0;
-  floorGroup[7].
+  floorGroup[7].text = "W = Jump";
+  floorGroup[7].textSize = 50;
+  floorGroup[7].collider = "none";
+
+  // floor 9
+  floorGroup[8].x = 0;
+  floorGroup[8].y = 250;
+  floorGroup[8].width = 0;
+  floorGroup[8].height = 0;
+  floorGroup[8].text = "A & D = Left & Right";
+  floorGroup[8].textSize = 50;
+  floorGroup[8].collider = "none";
+
+  // floor 10
+  floorGroup[9].x = 0;
+  floorGroup[9].y = 300;
+  floorGroup[9].width = 0;
+  floorGroup[9].height = 0;
+  floorGroup[9].text = "E = Create Platform";
+  floorGroup[9].textSize = 50;
+  floorGroup[9].collider = "none";
+
+  // floor 11
+  floorGroup[10].x = 0;
+  floorGroup[10].y = 350;
+  floorGroup[10].width = 0;
+  floorGroup[10].height = 0;
+  floorGroup[10].text = "Q = Delete Newest Platform";
+  floorGroup[10].textSize = 50;
+  floorGroup[10].collider = "none";
+
+  // FLOORS AND WALLS STUFF
+  // ~~~~~~~~~~~~~~~~~~~~~~~
 
   // floor 2
   floorGroup[1].x = 500;
@@ -180,10 +199,11 @@ function groupTest() {
   floorGroup[3].height = 600;
 
   // floor 5
-  floorGroup[4].x = 0;
-  floorGroup[4].y = 750;
-  floorGroup[4].width = 600;
+  floorGroup[4].x = 1465;
+  floorGroup[4].y = 649;
+  floorGroup[4].width = 60;
   floorGroup[4].height = 600;
+  floorGroup[4].rotation = -15;
 
   // floor 6
   floorGroup[5].x = 0;
@@ -192,9 +212,9 @@ function groupTest() {
   floorGroup[5].height = 600;
 
   // floor 7
-  floorGroup[6].x = 0;
-  floorGroup[6].y = 0;
-  floorGroup[6].width = 0;
-  floorGroup[6].height = 0;
-  
+  floorGroup[6].x = 1465+125;
+  floorGroup[6].y = 649-125;
+  floorGroup[6].width = 60;
+  floorGroup[6].height = 600;
+  floorGroup[6].rotation = -15;
 }
