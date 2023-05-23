@@ -93,6 +93,7 @@ function createPlayer() {
   //player.diameter = 50;
   player.color = "lavender";
   player.stroke = "purple";
+  player.x = 1450;
 }
 
 // WIP player death
@@ -115,7 +116,7 @@ function groupTest() {
   console.log(floorGroup.y);
   floorGroup.collider = "s";
   //create multiples of floor
-  while (floorGroup.length < 11) {
+  while (floorGroup.length < 17) {
     let floorThing = new floorGroup.Sprite();
   }
 
@@ -217,4 +218,46 @@ function groupTest() {
   floorGroup[6].width = 60;
   floorGroup[6].height = 600;
   floorGroup[6].rotation = -15;
+
+  // floor 12
+  floorGroup[11].x = 1565;
+  floorGroup[11].y = 950;
+  floorGroup[11].width = 60;
+  floorGroup[11].height = 100;
+  floorGroup[11].rotation = -35;
+
+  // floor 13
+  floorGroup[12].x = 1565+122;
+  floorGroup[12].y = 950-122;
+  floorGroup[12].width = 60;
+  floorGroup[12].height = 100;
+  floorGroup[12].rotation = -35;
+
+  //floor 14
+  floorGroup[13].x = 1615;
+  floorGroup[13].y = 1010;
+  floorGroup[13].width = 60;
+  floorGroup[13].height = 100;
+  floorGroup[13].rotation = -55;
+
+  //floor 15
+  floorGroup[14].x = 1615+125;
+  floorGroup[14].y = 1010-125;
+  floorGroup[14].width = 60;
+  floorGroup[14].height = 100;
+  floorGroup[14].rotation = -75;
+
+  //floor 16
+  floorGroup[15].x = 1665;
+  floorGroup[15].y = 1040;
+  floorGroup[15].width = 60;
+  floorGroup[15].height = 100;
+  floorGroup[15].rotation = -75;
+
+  //floor 17
+  floorGroup[16].x = 1665+130;
+  floorGroup[16].y = 1047;
+  floorGroup[16].width = 200;
+  floorGroup[16].height = 60;
+  
 }
