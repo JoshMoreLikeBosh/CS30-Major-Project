@@ -12,6 +12,7 @@ let floorX = 0;
 let floorY = 0;
 let jumpValue = 8;
 let boxyArray = [];
+let floorCounter1 = 0, floorCounter2 = 0;
 let mySound, mySound2, mySound3;
 let myImage, myImage2, myImage3;
 
@@ -39,6 +40,7 @@ function setup() {
 function draw() {
   background("white");
   playerMovement();
+  movingPlatform17();
   camera.x = player.x;
   camera.y = player.y;
 }
@@ -116,7 +118,7 @@ function groupTest() {
   console.log(floorGroup.y);
   floorGroup.collider = "s";
   //create multiples of floor
-  while (floorGroup.length < 17) {
+  while (floorGroup.length < 18) {
     let floorThing = new floorGroup.Sprite();
   }
 
@@ -259,5 +261,29 @@ function groupTest() {
   floorGroup[16].y = 1047;
   floorGroup[16].width = 200;
   floorGroup[16].height = 60;
+
+  //floor 18
+  floorGroup[17].x = 1965;
+  floorGroup[17].y = 1047;
+  floorGroup[17].width = 100;
+  floorGroup[17].height = 20;
+  floorGroup[17].dx = 1;
+
   
+
+}
+
+function movingPlatform17() {
+  floorGroup[17].x += floorGroup[17].dx;
+  console.log(floorGroup[17].dx);
+  if (floorGroup[17].x > 2100) {
+    console.log(floorGroup[17].x);
+    floorGroup[17].dx *= -1;
+  }
+  else if (floorGroup[17].x === 1965) {
+    floorGroup[17].dx *= -1;
+  }
+  // else {
+  //   floorGroup[17].x -= 1;
+  // }
 }
