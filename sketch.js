@@ -40,7 +40,7 @@ function setup() {
 function draw() {
   background("white");
   playerMovement();
-  movingPlatform17();
+  movingPlatform1();
   camera.x = player.x;
   camera.y = player.y;
 }
@@ -118,7 +118,7 @@ function groupTest() {
   console.log(floorGroup.y);
   floorGroup.collider = "s";
   //create multiples of floor
-  while (floorGroup.length < 18) {
+  while (floorGroup.length < 21) {
     let floorThing = new floorGroup.Sprite();
   }
 
@@ -268,22 +268,57 @@ function groupTest() {
   floorGroup[17].width = 100;
   floorGroup[17].height = 20;
   floorGroup[17].dx = 1;
+  floorGroup[17].dy = 1;
 
+  //floor 19
+  floorGroup[18].x = 1915;
+  floorGroup[18].y = 1032;
+  floorGroup[18].width = 10;
+  floorGroup[18].height = 20;
+  floorGroup[18].dx = 1;
+  floorGroup[18].dy = 1;
   
+  //floor 20
+  floorGroup[19].x = 2015;
+  floorGroup[19].y = 1032;
+  floorGroup[19].width = 10;
+  floorGroup[19].height = 20;
+  floorGroup[19].dx = 1;
+  floorGroup[19].dy = 1;
 
+  // floor 21
+  floorGroup[20].x = 2400;
+  floorGroup[20].y = 1032;
+  floorGroup[20].width = 10;
+  floorGroup[20].height = 20;
 }
 
-function movingPlatform17() {
+function movingPlatform1() {
   floorGroup[17].x += floorGroup[17].dx;
   console.log(floorGroup[17].dx);
-  if (floorGroup[17].x > 2100) {
-    console.log(floorGroup[17].x);
+  if (floorGroup[17].x > 2300) {
     floorGroup[17].dx *= -1;
   }
   else if (floorGroup[17].x === 1965) {
     floorGroup[17].dx *= -1;
   }
-  // else {
-  //   floorGroup[17].x -= 1;
-  // }
+  // small block 1
+  floorGroup[18].x += floorGroup[18].dx;
+  console.log(floorGroup[18].dx);
+  if (floorGroup[18].x > 2300-50) {
+    floorGroup[18].dx *= -1;
+  }
+  else if (floorGroup[18].x === 1915) {
+    floorGroup[18].dx *= -1;
+  }
+
+  //small block 2
+  floorGroup[19].x += floorGroup[19].dx;
+  console.log(floorGroup[19].dx);
+  if (floorGroup[19].x > 2300+50) {
+    floorGroup[19].dx *= -1;
+  }
+  else if (floorGroup[19].x === 2015) {
+    floorGroup[19].dx *= -1;
+  }
 }
