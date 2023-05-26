@@ -118,7 +118,7 @@ function groupTest() {
   console.log(floorGroup.y);
   floorGroup.collider = "s";
   //create multiples of floor
-  while (floorGroup.length < 21) {
+  while (floorGroup.length < 24) {
     let floorThing = new floorGroup.Sprite();
   }
 
@@ -262,7 +262,7 @@ function groupTest() {
   floorGroup[16].width = 200;
   floorGroup[16].height = 60;
 
-  //floor 18
+  //floor 18 MOVING PLAT
   floorGroup[17].x = 1965;
   floorGroup[17].y = 1047;
   floorGroup[17].width = 100;
@@ -270,7 +270,7 @@ function groupTest() {
   floorGroup[17].dx = 1;
   floorGroup[17].dy = 1;
 
-  //floor 19
+  //floor 19 MOVING PLAT
   floorGroup[18].x = 1915;
   floorGroup[18].y = 1032;
   floorGroup[18].width = 10;
@@ -278,7 +278,7 @@ function groupTest() {
   floorGroup[18].dx = 1;
   floorGroup[18].dy = 1;
   
-  //floor 20
+  //floor 20 MOVING PLAT
   floorGroup[19].x = 2015;
   floorGroup[19].y = 1032;
   floorGroup[19].width = 10;
@@ -287,11 +287,41 @@ function groupTest() {
   floorGroup[19].dy = 1;
 
   // floor 21
-  floorGroup[20].x = 2400;
+  floorGroup[20].x = 2450;
   floorGroup[20].y = 1032;
-  floorGroup[20].width = 10;
-  floorGroup[20].height = 20;
+  floorGroup[20].width = 150;
+  floorGroup[20].height = 60;
+
+
+  // floor 22 BUTTON
+  floorGroup[21].x = 1000;
+  floorGroup[21].y = 337;
+  floorGroup[21].width = 30;
+  floorGroup[21].height = 30;
+
+  // floor 23
+  floorGroup[22].x = 978;
+  floorGroup[22].y = 345;
+  floorGroup[22].width = 15;
+  floorGroup[22].height = 15;
+
+  // floor 24
+  floorGroup[23].x = 1022;
+  floorGroup[23].y = 345;
+  floorGroup[23].width = 15;
+  floorGroup[23].height = 15;
 }
+
+// if colliding w/ player, slowly change height, and revert back to original height
+function buttonPushable() {
+  if (player.collides(floorGroup[21])) {
+    floorGroup[21].height = 15;
+  }
+}
+
+
+
+
 
 function movingPlatform1() {
   floorGroup[17].x += floorGroup[17].dx;
@@ -322,3 +352,4 @@ function movingPlatform1() {
     floorGroup[19].dx *= -1;
   }
 }
+
