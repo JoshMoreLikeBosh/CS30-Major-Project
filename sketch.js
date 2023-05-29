@@ -41,6 +41,7 @@ function draw() {
   background("white");
   playerMovement();
   movingPlatform1();
+  buttonPushable();
   camera.x = player.x;
   camera.y = player.y;
 }
@@ -95,7 +96,7 @@ function createPlayer() {
   //player.diameter = 50;
   player.color = "lavender";
   player.stroke = "purple";
-  player.x = 1450;
+  player.x = 0;
 }
 
 // WIP player death
@@ -118,7 +119,7 @@ function groupTest() {
   console.log(floorGroup.y);
   floorGroup.collider = "s";
   //create multiples of floor
-  while (floorGroup.length < 24) {
+  while (floorGroup.length < 25) {
     let floorThing = new floorGroup.Sprite();
   }
 
@@ -310,15 +311,22 @@ function groupTest() {
   floorGroup[23].y = 345;
   floorGroup[23].width = 15;
   floorGroup[23].height = 15;
+
+  // floor 25
+  floorGroup[24].x = 1200;
+  floorGroup[24].y = -45;
+  floorGroup[24].width = 25;
+  floorGroup[24].height = 800;
 }
 
 // if colliding w/ player, slowly change height, and revert back to original height
 function buttonPushable() {
   if (player.collides(floorGroup[21])) {
-    floorGroup[21].height = 15;
+    floorGroup[21].height -= 2;
+    floorGroup[21].y += 1;
+    floorGroup[24].y -= 10;
   }
 }
-
 
 
 

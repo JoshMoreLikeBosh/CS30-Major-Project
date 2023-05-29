@@ -6,19 +6,15 @@
 
 ## Need to have List
 
-- player model
-- bullets
-- platforms
-- physics
-- movement
+- player model / done
+- platforms / done
+- physics / done
+- movement / done
+- puzzle elements
+- completed level / 20% done
 
 ## Nice to have List
 
-- moving targets
-- multiple weapons
-- parkour elements / obstacle course
-- sliding and super jumping
-- wall jumps
 - 
 
 ## Project Stuff
