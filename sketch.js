@@ -288,9 +288,9 @@ function groupTest() {
   floorGroup[19].dy = 1;
 
   // floor 21
-  floorGroup[20].x = 2450;
+  floorGroup[20].x = 2660;
   floorGroup[20].y = 1032;
-  floorGroup[20].width = 150;
+  floorGroup[20].width = 600;
   floorGroup[20].height = 60;
 
 
@@ -333,7 +333,6 @@ function buttonPushable() {
 
 function movingPlatform1() {
   floorGroup[17].x += floorGroup[17].dx;
-  console.log(floorGroup[17].dx);
   if (floorGroup[17].x > 2300) {
     floorGroup[17].dx *= -1;
   }
@@ -342,7 +341,6 @@ function movingPlatform1() {
   }
   // small block 1
   floorGroup[18].x += floorGroup[18].dx;
-  console.log(floorGroup[18].dx);
   if (floorGroup[18].x > 2300-50) {
     floorGroup[18].dx *= -1;
   }
@@ -352,7 +350,6 @@ function movingPlatform1() {
 
   //small block 2
   floorGroup[19].x += floorGroup[19].dx;
-  console.log(floorGroup[19].dx);
   if (floorGroup[19].x > 2300+50) {
     floorGroup[19].dx *= -1;
   }
@@ -361,3 +358,7 @@ function movingPlatform1() {
   }
 }
 
+function buttonForBox() {
+  // use button code but change the collision to only be the new box, use that box to open a door,
+  // save the box from falling into void by using the platforms made by player
+}
