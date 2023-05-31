@@ -96,7 +96,7 @@ function createPlayer() {
   //player.diameter = 50;
   player.color = "lavender";
   player.stroke = "purple";
-  player.x = 0;
+  player.x = 2500;
 }
 
 // WIP player death
@@ -119,7 +119,7 @@ function groupTest() {
   console.log(floorGroup.y);
   floorGroup.collider = "s";
   //create multiples of floor
-  while (floorGroup.length < 25) {
+  while (floorGroup.length < 27) {
     let floorThing = new floorGroup.Sprite();
   }
 
@@ -317,6 +317,19 @@ function groupTest() {
   floorGroup[24].y = -45;
   floorGroup[24].width = 25;
   floorGroup[24].height = 800;
+
+  // floor 26
+  floorGroup[25].x = 2500;
+  floorGroup[25].y = 800;
+  floorGroup[25].width = 250;
+  floorGroup[25].height = 25;
+
+  // floor 27
+  floorGroup[26].x = 2500;
+  floorGroup[26].y = 770;
+  floorGroup[26].width = 25;
+  floorGroup[26].height = 25;
+  floorGroup[26].collider = "d";
 }
 
 // if colliding w/ player, slowly change height, and revert back to original height
