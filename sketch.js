@@ -68,7 +68,10 @@ function playerMovement() {
 
   // jump
   if (kb.presses("w") || kb.presses("up")) {
-    player.vel.y = -jumpValue;
+    if (player.colliding(floorGroup) || player.colliding(boxy)) {
+      player.vel.y = -jumpValue;
+    }
+    
   }
 
   // Creates a platform under the player
@@ -119,7 +122,7 @@ function groupTest() {
   console.log(floorGroup.y);
   floorGroup.collider = "s";
   //create multiples of floor
-  while (floorGroup.length < 27) {
+  while (floorGroup.length < 30) {
     let floorThing = new floorGroup.Sprite();
   }
 
@@ -330,6 +333,24 @@ function groupTest() {
   floorGroup[26].width = 25;
   floorGroup[26].height = 25;
   floorGroup[26].collider = "d";
+
+  // floor 28
+  floorGroup[27].x = 3100;
+  floorGroup[27].y = 1032;
+  floorGroup[27].width = 200;
+  floorGroup[27].height = 60;
+
+  // floor 29
+  floorGroup[28].x = 2980;
+  floorGroup[28].y = 1050;
+  floorGroup[28].width = 50;
+  floorGroup[28].height = 25;
+
+  // floor 30
+  floorGroup[29].x = 2980;
+  floorGroup[29].y = 1025;
+  floorGroup[29].width = 43;
+  floorGroup[29].height = 25;
 }
 
 // if colliding w/ player, slowly change height, and revert back to original height
@@ -338,6 +359,10 @@ function buttonPushable() {
     floorGroup[21].height -= 2;
     floorGroup[21].y += 1;
     floorGroup[24].y -= 10;
+  }
+  if (floorGroup[26].collides(floorGroup[29])) {
+    floorGroup[29].height -= 2;
+    floorGroup[29].y += 1;
   }
 }
 
