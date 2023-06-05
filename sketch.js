@@ -32,7 +32,7 @@ function preload() {
 function setup() {
   mySound3.play();
   new Canvas(windowWidth, windowHeight);
-  world.gravity.y = 15;
+  world.gravity.y = 25;
   groupTest();
   createPlayer();
 } 
