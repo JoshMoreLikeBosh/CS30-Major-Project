@@ -122,7 +122,7 @@ function groupTest() {
   console.log(floorGroup.y);
   floorGroup.collider = "s";
   //create multiples of floor
-  while (floorGroup.length < 31) {
+  while (floorGroup.length < 33) {
     let floorThing = new floorGroup.Sprite();
   }
 
@@ -357,6 +357,20 @@ function groupTest() {
   floorGroup[30].y = 1025;
   floorGroup[30].width = 25;
   floorGroup[30].height = 403;
+
+  // floor 32
+  floorGroup[31].x = 3750;
+  floorGroup[31].y = 1025;
+  floorGroup[31].width = 400;
+  floorGroup[31].height = 50;
+
+  // floor 33
+  floorGroup[32].x = 4300;
+  floorGroup[32].y = 1025;
+  floorGroup[32].width = 400;
+  floorGroup[32].height = 50;
+
+  // make falling block to put into button when block reaches certain y value, reset its y value
 }
 
 // if colliding w/ player, slowly change height, and revert back to original height
