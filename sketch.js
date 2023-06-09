@@ -42,6 +42,7 @@ function draw() {
   playerMovement();
   movingPlatform1();
   buttonPushable();
+  fallingBlock();
   camera.x = player.x;
   camera.y = player.y;
 }
@@ -99,17 +100,8 @@ function createPlayer() {
   //player.diameter = 50;
   player.color = "lavender";
   player.stroke = "purple";
-  player.x = 2500;
-}
-
-// WIP player death
-// ~~~~~~~~~~~~~~~~
-
-function playerDeath() {
-  if (player.y > windowHeight) {
-    player.x = windowWidth/2;
-    player.y = windowHeight/8;
-  }
+  player.x = 3800;
+  player.y = 700;
 }
 
 function groupTest() {
@@ -122,7 +114,7 @@ function groupTest() {
   console.log(floorGroup.y);
   floorGroup.collider = "s";
   //create multiples of floor
-  while (floorGroup.length < 33) {
+  while (floorGroup.length < 50) {
     let floorThing = new floorGroup.Sprite();
   }
 
@@ -370,10 +362,63 @@ function groupTest() {
   floorGroup[32].width = 400;
   floorGroup[32].height = 50;
 
-  // make falling block to put into button when block reaches certain y value, reset its y value
+  // floor 34
+  floorGroup[33].x = 4025;
+  floorGroup[33].y = 700;
+  floorGroup[33].width = 25;
+  floorGroup[33].height = 25;
+  floorGroup[33].collider = "d";
+
+  // floor 35
+  floorGroup[34].x = 4525;
+  floorGroup[34].y = 1045;
+  floorGroup[34].width = 100;
+  floorGroup[34].height = 25;
+  floorGroup[34].rotation = 45;
+
+  // floor 36
+  floorGroup[35].x = 4665;
+  floorGroup[35].y = 1045;
+  floorGroup[35].width = 100;
+  floorGroup[35].height = 25;
+  floorGroup[35].rotation = -45;
+
+  // floor 37
+  floorGroup[36].x = 4555;
+  floorGroup[36].y = 1145;
+  floorGroup[36].width = 25;
+  floorGroup[36].height = 150;
+
+  // floor 38
+  floorGroup[37].x = 4635;
+  floorGroup[37].y = 1145;
+  floorGroup[37].width = 25;
+  floorGroup[37].height = 150;
+
+  // floor 39
+  floorGroup[38].x = 4595;
+  floorGroup[38].y = 1210;
+  floorGroup[38].width = 100;
+  floorGroup[38].height = 25;
+
+  // floor 40
+  floorGroup[39].x = 4595;
+  floorGroup[39].y = 1190;
+  floorGroup[39].width = 75;
+  floorGroup[39].height = 25;
+
 }
 
+// block functions down here
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 // if colliding w/ player, slowly change height, and revert back to original height
+
+function movingSwing() {
+  // use sprite.rotateTowards function and have a static sprite at the top
+  // then have a sprite move back and forth through an upside down arch
+}
+
 function buttonPushable() {
   if (player.collides(floorGroup[21])) {
     floorGroup[21].height -= 2;
@@ -387,10 +432,25 @@ function buttonPushable() {
     floorGroup[30].rotation -= 6.5;
     floorGroup[30].y -= 0.8;
   }
+  if (floorGroup[33].collides(floorGroup[39])) {
+    floorGroup[39].y += 1;
+    floorGroup[39].height -= 2;
+  }
 }
 
+function fallingBlock() {
+  if (floorGroup[33].y > 1600) {
+    floorGroup[33].y = 700;
+    floorGroup[33].x = 4025;
+    floorGroup[33].velocity.y = 0;
+    floorGroup[33].velocity.x = 0;
+  }
+}
 
-
+function buttonForBox() {
+  // use button code but change the collision to only be the new box, use that box to open a door,
+  // save the box from falling into void by using the platforms made by player
+}
 
 function movingPlatform1() {
   floorGroup[17].x += floorGroup[17].dx;
@@ -419,7 +479,3 @@ function movingPlatform1() {
   }
 }
 
-function buttonForBox() {
-  // use button code but change the collision to only be the new box, use that box to open a door,
-  // save the box from falling into void by using the platforms made by player
-}
