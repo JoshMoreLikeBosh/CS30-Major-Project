@@ -13,7 +13,7 @@ let floorY = 0;
 let jumpValue = 8;
 let boxyArray = [];
 let floorCounter1 = 0, floorCounter2 = 0;
-let mySound, mySound2, mySound3;
+let mySound, mySound2, mySound3, mySound4, mySound5;
 let myImage, myImage2, myImage3;
 
 function preload() {
@@ -22,6 +22,8 @@ function preload() {
   mySound = loadSound("bgSong.mp3");
   mySound2 = loadSound("bgSong2.mp3");
   mySound3 = loadSound("meow.mp3");
+  mySound4 = loadSound("jump.mp3");
+  mySound5 = loadSound("boxy.mp3");
 
   // Loads Image Files
   myImage = loadImage("bgImage.jpg");
@@ -30,7 +32,8 @@ function preload() {
 }
 
 function setup() {
-  mySound3.play();
+  mySound3.loop();
+  mySound3.setVolume(0.5);
   new Canvas(windowWidth, windowHeight);
   world.gravity.y = 25;
   groupTest();
@@ -69,9 +72,10 @@ function playerMovement() {
 
   // jump
   if (kb.presses("w") || kb.presses("up")) {
-    // if (player.colliding(floorGroup) || player.colliding(boxy)) {
-    player.vel.y = -jumpValue;
-    // }
+    if (player.colliding(floorGroup) || player.colliding(boxy)) {
+      player.vel.y = -jumpValue;
+      mySound4.play();
+    }
     
   }
 
@@ -85,6 +89,7 @@ function playerMovement() {
     boxy.color = "LightPink";
     boxy.stroke = "MediumVioletRed";
     boxyArray.push(boxy);
+    mySound5.play();
   }
   if (kb.presses("q") || kb.presses("shift")) {
     let toDestroy = boxyArray.pop();
@@ -100,8 +105,8 @@ function createPlayer() {
   //player.diameter = 50;
   player.color = "lavender";
   player.stroke = "purple";
-  player.x = 3800;
-  player.y = 700;
+  player.x = 0;
+  player.y = 0;
 }
 
 function groupTest() {
