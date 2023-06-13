@@ -15,6 +15,8 @@ let boxyArray = [];
 let floorCounter1 = 0, floorCounter2 = 0;
 let mySound, mySound2, mySound3, mySound4, mySound5;
 let myImage, myImage2, myImage3;
+let boxys;
+let boxyCount = 0;
 
 function preload() {
   // Loads Music Files
@@ -38,6 +40,9 @@ function setup() {
   world.gravity.y = 25;
   groupTest();
   createPlayer();
+
+
+
 } 
 
 function draw() {
@@ -48,6 +53,8 @@ function draw() {
   fallingBlock();
   camera.x = player.x;
   camera.y = player.y;
+
+
 }
 
 // Players Movement
@@ -72,29 +79,52 @@ function playerMovement() {
 
   // jump
   if (kb.presses("w") || kb.presses("up")) {
-    if (player.colliding(floorGroup) || player.colliding(boxy)) {
-      player.vel.y = -jumpValue;
-      mySound4.play();
+
+    if (boxy === undefined) {
+      if (player.colliding(floorGroup)) {
+        player.vel.y = -jumpValue;
+        mySound4.play();
+      }
+      
     }
+    if (boxy !== undefined) {
+      if (player.colliding(floorGroup) || player.colliding(boxy)) {
+        player.vel.y = -jumpValue;
+        mySound4.play();
+      }
+    }
+    
     
   }
 
   // Creates a platform under the player
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
-  if (kb.presses("e") || kb.presses("space")) {
-    boxy = new Sprite(100, 25, 150, 25, "s");
-    boxy.x = player.x + 0;
-    boxy.y = player.y + 50;
-    boxy.color = "LightPink";
-    boxy.stroke = "MediumVioletRed";
-    boxyArray.push(boxy);
-    mySound5.play();
+  if (boxyCount < 3){
+    if (kb.presses("e") || kb.presses("space")) {
+
+      boxy = new Sprite(100, 25, 150, 25, "s");
+      boxy.x = player.x + 0;
+      boxy.y = player.y + 50;
+      boxy.color = "LightPink";
+      boxy.stroke = "MediumVioletRed";
+      boxyArray.push(boxy);
+      mySound5.play();
+      boxyCount++;
+    }
   }
-  if (kb.presses("q") || kb.presses("shift")) {
-    let toDestroy = boxyArray.pop();
-    toDestroy.remove();
+  if (boxyCount > 0) {
+    if (kb.presses("q") || kb.presses("shift")) {
+      let toDestroy = boxyArray.pop();
+      toDestroy.remove();
+      boxyCount--;
+    }
   }
+   
+    
+  
+
+
 }
 
 // Creates the Player
@@ -105,8 +135,8 @@ function createPlayer() {
   //player.diameter = 50;
   player.color = "lavender";
   player.stroke = "purple";
-  player.x = 0;
-  player.y = 0;
+  player.x = 4500;
+  player.y = 1000;
 }
 
 function groupTest() {
@@ -412,6 +442,12 @@ function groupTest() {
   floorGroup[39].width = 75;
   floorGroup[39].height = 25;
 
+  // floor 41
+  floorGroup[40].x = 4595+100;
+  floorGroup[40].y = 1190;
+  floorGroup[40].width = 75;
+  floorGroup[40].height = 25;
+
 }
 
 // block functions down here
@@ -440,6 +476,8 @@ function buttonPushable() {
   if (floorGroup[33].collides(floorGroup[39])) {
     floorGroup[39].y += 1;
     floorGroup[39].height -= 2;
+    floorGroup[40].y -= 10;
+    floorGroup[40].x += 3;
   }
 }
 
