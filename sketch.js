@@ -135,8 +135,8 @@ function createPlayer() {
   //player.diameter = 50;
   player.color = "lavender";
   player.stroke = "purple";
-  player.x = 4500;
-  player.y = 1000;
+  player.x = 0;
+  player.y = 0;
 }
 
 function groupTest() {
